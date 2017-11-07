@@ -3,7 +3,7 @@ image: "postgres"
 ## postgres image version
 ## ref: https://hub.docker.com/r/library/postgres/tags/
 ##
-imageTag: "9.6.2"
+imageTag: "latest"
 
 ## Specify a imagePullPolicy
 ## 'Always' if imageTag is 'latest', else set to 'IfNotPresent'
@@ -13,13 +13,13 @@ imageTag: "9.6.2"
 
 ## Create a database user
 ## Default: postgres
-# postgresUser:
+postgresUser: quay
 ## Default: random 10 character string
-# postgresPassword:
+postgresPassword: quay123
 
 ## Create a database
 ## Default: the postgres user
-# postgresDatabase:
+postgresDatabase: quaydb
 
 ## Specify initdb arguments, e.g. --data-checksums
 ## ref: https://github.com/docker-library/docs/blob/master/postgres/content.md#postgres_initdb_args
@@ -44,7 +44,7 @@ persistence:
   ##
   # storageClass: "-"
   accessMode: ReadWriteOnce
-  size: 8Gi
+  size: 10Gi
   subPath: "postgresql-db"
 
 metrics:
@@ -78,7 +78,7 @@ resources:
     cpu: 100m
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5432
   externalIPs: []
 
